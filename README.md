@@ -1,9 +1,12 @@
 # keycloak-sms-authenticator
+Forked from https://github.com/Alliander/keycloak-sms-authenticator because it's not anymore maintaint
+and not compatible with Keycloak 10 and above.
+
 
 To install the SMS Authenticator one has to:
 
 * Add the jar to the Keycloak server:
-  * `$ cp target/keycloak-sms-authenticator.jar _KEYCLOAK_HOME_/providers/`
+  * `$ cp build/libs/keycloak-sms-authenticator.jar _KEYCLOAK_HOME_/providers/`
 
 * Add two templates to the Keycloak server:
   * `$ cp templates/sms-validation.ftl _KEYCLOAK_HOME_/themes/base/login/`

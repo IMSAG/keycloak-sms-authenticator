@@ -12,6 +12,10 @@ To install the SMS Authenticator one has to:
   * `$ cp templates/sms-validation.ftl _KEYCLOAK_HOME_/themes/base/login/`
   * `$ cp templates/sms-validation-error.ftl _KEYCLOAK_HOME_/themes/base/login/`
 
+* Add messages to the Keycloak server
+  * Merge or add the message*.properties files from _templates/messages/*_ with the server files _KEYCLOAK_HOME\_/themes/base/login/_
+    
+
 
 Configure your REALM to use the SMS Authentication.
 First create a new REALM (or select a previously created REALM).

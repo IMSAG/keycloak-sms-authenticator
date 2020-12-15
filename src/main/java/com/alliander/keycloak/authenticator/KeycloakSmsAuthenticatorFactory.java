@@ -45,6 +45,7 @@ public class KeycloakSmsAuthenticatorFactory implements AuthenticatorFactory, Co
         property.setLabel("Mobile number attribute");
         property.setType(ProviderConfigProperty.STRING_TYPE);
         property.setHelpText("The attribute in which the mobile number of a user is stored.");
+        property.setDefaultValue("phoneNumber");
         configProperties.add(property);
 
         // SMS Code

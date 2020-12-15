@@ -1,9 +1,11 @@
 package com.alliander.keycloak.authenticator;
 
-public class SMSAuthenticatorMessages {
+public final class SMSAuthenticatorMessages {
 
-    public static final String BadCode = "Sie haben einen falschen Code eingegeben.";
-    public static final String CodeExpired = "Der Code ist abgelaufen.";
-    public static final String NumberNotDetermined = "Die Telefonnummer konnte nicht ermittelt werden.";
-    public static final String SMSNotSent = "Das SMS konnte nicht gesendet werden.";
+    private SMSAuthenticatorMessages(){}
+
+    public static final String SMS_BAD_CODE = "smsBadCode";
+    public static final String CODE_EXPIRED = "smsCodeExpired";
+    public static final String SMS_NUMBER_NOT_DETERMINED = "smsNumberNotDetermined";
+    public static final String SMS_NOT_SENT = "smsNotSent";
 }

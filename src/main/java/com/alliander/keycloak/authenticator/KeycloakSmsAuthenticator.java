@@ -47,12 +47,6 @@ public class KeycloakSmsAuthenticator implements Authenticator {
     public void authenticate(AuthenticationFlowContext context) {
         logger.debug("authenticate called .... context = " + context);
 
-        List<String> smsVerified = context.getUser().getAttribute("smsVerified");
-        if (!smsVerified.isEmpty() && smsVerified.get(0).equals("true")) {
-            context.success();
-            return;
-        }
-
         AuthenticatorConfigModel config = context.getAuthenticatorConfig();
 
         String mobileNumberAttribute = SMSAuthenticatorUtil
@@ -60,7 +54,7 @@ public class KeycloakSmsAuthenticator implements Authenticator {
         if (mobileNumberAttribute == null) {
             logger.error("Mobile number attribute is not configured for the SMS Authenticator.");
             Response challenge = context.form()
-                    .setError(SMSAuthenticatorMessages.NumberNotDetermined)
+                    .setError(SMSAuthenticatorMessages.SMS_NUMBER_NOT_DETERMINED)
                     .createForm("sms-validation-error.ftl");
             context.failureChallenge(AuthenticationFlowError.INTERNAL_ERROR, challenge);
             return;
@@ -85,14 +79,14 @@ public class KeycloakSmsAuthenticator implements Authenticator {
                 context.challenge(challenge);
             } else {
                 Response challenge = context.form()
-                        .setError(SMSAuthenticatorMessages.SMSNotSent)
+                        .setError(SMSAuthenticatorMessages.SMS_NOT_SENT)
                         .createForm("sms-validation-error.ftl");
                 context.failureChallenge(AuthenticationFlowError.INTERNAL_ERROR, challenge);
             }
         } else {
             // The mobile number is NOT configured --> complain
             Response challenge = context.form()
-                    .setError(SMSAuthenticatorMessages.NumberNotDetermined)
+                    .setError(SMSAuthenticatorMessages.SMS_NUMBER_NOT_DETERMINED)
                     .createForm("sms-validation-error.ftl");
             context.failureChallenge(AuthenticationFlowError.CLIENT_CREDENTIALS_SETUP_REQUIRED, challenge);
         }
@@ -105,7 +99,7 @@ public class KeycloakSmsAuthenticator implements Authenticator {
         switch (status) {
             case EXPIRED:
                 challenge = context.form()
-                        .setError(SMSAuthenticatorMessages.CodeExpired)
+                        .setError(SMSAuthenticatorMessages.CODE_EXPIRED)
                         .createForm("sms-validation.ftl");
                 context.failureChallenge(AuthenticationFlowError.EXPIRED_CODE, challenge);
                 break;
@@ -117,7 +111,7 @@ public class KeycloakSmsAuthenticator implements Authenticator {
                 } else if (context.getExecution().getRequirement()
                         == AuthenticationExecutionModel.Requirement.REQUIRED) {
                     challenge = context.form()
-                            .setError(SMSAuthenticatorMessages.BadCode)
+                            .setError(SMSAuthenticatorMessages.SMS_BAD_CODE)
                             .createForm("sms-validation.ftl");
                     context.failureChallenge(AuthenticationFlowError.INVALID_CREDENTIALS, challenge);
                 } else {

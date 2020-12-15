@@ -1,7 +1,4 @@
-# IDEs and editors
 **/*.iml
 .idea/*
-
 /.gradle/
-/ext/build/
-/providers/
+build/

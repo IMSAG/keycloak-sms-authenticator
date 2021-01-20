@@ -29,7 +29,3 @@ Under Authentication > Flows:
 
 Under Authentication > Bindings:
 * Select 'Browser with SMS' as the 'Browser Flow' for the REALM.
-
-Under Authentication > Required Actions:
-* Click on Register and select 'SMS Authentication' to add the Required Action to the REALM.
-* Make sure that for the 'SMS Authentication' both the 'Enabled' and 'Default Action' check boes are checked.

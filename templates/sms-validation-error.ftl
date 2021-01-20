@@ -8,7 +8,7 @@
         <form id="kc-totp-login-form" class="${properties.kcFormClass!}" action="${url.loginAction}" method="post">
             <div class="${properties.kcFormGroupClass!}">
                 <div class="${properties.kcLabelWrapperClass!}">
-                    <label class="${properties.kcLabelClass!}">Please contact your system administrator</label>
+                    <label class="${properties.kcLabelClass!}">${msg("smsPleasContactSysAdmin")}</label>
                 </div>
 
             </div>
@@ -21,7 +21,7 @@
             </div>
         </form>
         <#if client?? && client.baseUrl?has_content>
-            <p><a id="backToApplication" href="${client.baseUrl}">${msg("backToApplication")}</a></p>
+            <p><a id="backToApplication" href="${client.baseUrl}">${kcSanitize(msg("backToApplication"))?no_esc}</a></p>
         </#if>
     </#if>
 </@layout.registrationLayout>

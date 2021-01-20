@@ -345,7 +345,7 @@ public class KeycloakSmsAuthenticator implements Authenticator {
     private String getPath(String mobileNumber, URL smsURL, String smsText) throws UnsupportedEncodingException {
         String path = smsURL.getPath();
         if (smsURL.getQuery() != null && smsURL.getQuery().length() > 0) {
-            path += smsURL.getQuery();
+            path += "?"+smsURL.getQuery();
         }
         path = path.replaceFirst("\\{message}", URLEncoder.encode(smsText, "UTF-8"));
         path = path.replaceFirst("\\{phonenumber}", URLEncoder.encode(mobileNumber, "UTF-8"));

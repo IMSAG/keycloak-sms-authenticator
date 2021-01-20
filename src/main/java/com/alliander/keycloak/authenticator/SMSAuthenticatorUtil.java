@@ -16,7 +16,7 @@ public class SMSAuthenticatorUtil {
     public static String getAttributeValue(UserModel user, String attributeName) {
         String result = null;
         List<String> values = user.getAttribute(attributeName);
-        if(values != null && values.size() > 0) {
+        if(values != null && !values.isEmpty()) {
             result = values.get(0);
         }
         return result;
@@ -27,14 +27,9 @@ public class SMSAuthenticatorUtil {
     }
 
     public static String getConfigString(AuthenticatorConfigModel config, String configName, String defaultValue) {
-
-        String value = defaultValue;
-
-        if (config.getConfig() != null) {
-            // Get value
-            value = config.getConfig().get(configName);
-        }
-        return value;
+        return config.getConfig() != null && config.getConfig().containsKey(configName) ?
+            config.getConfig().get(configName) :
+            defaultValue;
     }
 
     public static Long getConfigLong(AuthenticatorConfigModel config, String configName) {
